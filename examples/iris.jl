@@ -4,6 +4,7 @@ using OASA,
       Base.Test
 
 # Load data
+# =========
 d = Matrix(dataset("datasets", "iris"))
 
 X = Float64.(d[:, 2:4])
@@ -11,6 +12,7 @@ Y = reshape(Float64.(d[:, 1]), (1, 150))
 
 
 # Define model
+# ============
 # Variable "X" is an Mxn matrix of independent (endogenic) features
 obj = L2_Obj()                          # L2 objective: ∑ (y - ŷ)^2
 alg = Linear()                          # Linear model
@@ -25,8 +27,8 @@ inf = Dict()
 reg = Model(obj, alg, sol, arc, inf)
 
 
-
 # Test model
+# ==========
 # Ensure everything is set up properly
 @testset "Model Initialized" begin
   # Dimensions of inference == dimensions of Y
@@ -39,11 +41,12 @@ end
 
 
 # Train model
-train!(reg, X, Y; learn_rate = 1e-8)
+# ===========
+train!(reg, X, Y; learn_rate = 1e-6)
 
 # Plot errors in terminal
-print(lineplot(reg.inf["errors"]))
+lineplot(reg.inf["errors"], canvas=AsciiCanvas, border=:ascii, title="Objective")
 
 # Also note that the components of `reg` are pointers to the variables
 # defined earlier. We can access this information more directly:
-print(lineplot(inf["errors"]))
+# lineplot(inf["errors"])

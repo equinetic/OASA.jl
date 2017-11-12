@@ -3,7 +3,7 @@
 This package is currently in development and is not guaranteed to be stable. To install, simply clone this repository:
 
 ```julia
-Pkg.clone("github.com/equinetic/OASA.jl")
+Pkg.clone("https://github.com/equinetic/OASA.jl.git")
 ```
 
 # OASA.jl
@@ -83,10 +83,31 @@ using UnicodePlots
 train!(reg, X, Y; learn_rate=1e-7, max_iter=2500)
 
 # Plot errors in terminal
-print( lineplot(reg.inf["errors"]) )
+lineplot(reg.inf["errors"], canvas=AsciiCanvas, border=:ascii, title="Objective")
 
 # Also note that the components of `reg` are pointers to the variables
 # defined earlier. We can access this information more directly:
-print( lineplot(inf["errors"]) )
+# lineplot(inf["errors"])
+```
 
+```
+                Objective
++----------------------------------------+
+|                                        |
+|.                                       |
+||                                       |
+|\                                       |
+|l                                       |
+||                                       |
+| |                                      |
+| \                                      |
+| ].                                     |
+|  .                                     |
+|  ].                                    |
+|   \                                    |
+|   "\.                                  |
+|     \..                                |
+|       ""-----\_________________________|
++----------------------------------------+
+0                                     1000
 ```
