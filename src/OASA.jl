@@ -1,6 +1,7 @@
 module OASA
 
-using   LossFunctions
+using   LossFunctions,
+        ProgressMeter
         #PenaltyFunctions
         #TiledIteration
 

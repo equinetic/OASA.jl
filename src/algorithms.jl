@@ -9,7 +9,13 @@ end
 """
 Linear Algorithm
 """
-struct Linear <: Algorithm end
+struct Linear <: Algorithm
+    link
+end
+
+function Linear()::Linear
+  Linear(identity)
+end
 
 function infer(alg::Linear, arc::SingleLayer, X)
   return arc.wts * X'

@@ -27,11 +27,16 @@ function train!(S::GradientDescent,
   M.sol.iter = 0
   M.sol.state_err = 2 * err_tol
   M.inf["errors"] = get(M.inf, "errors", Vector{Float64}())
+  p = ProgressThresh(err_tol, "Training:")
+
+
   while M.sol.iter < max_iter && M.sol.state_err > err_tol
     ŷ = infer(M, x)
     M.sol.state_err = assess(M, ŷ, y)
     update!(M, y, ŷ, x, learn_rate)
     M.sol.iter += 1
     append!(M.inf["errors"], M.sol.state_err)
+    ProgressMeter.update!(p, M.sol.state_err)
   end
+
 end

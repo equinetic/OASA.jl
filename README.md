@@ -6,6 +6,8 @@ This package is currently in development and is not guaranteed to be stable. To 
 Pkg.clone("https://github.com/equinetic/OASA.jl.git")
 ```
 
+See [TODO.md](/TODO.md) for current list of action items.
+
 # OASA.jl
 
 The OASA package provides the modular structure required for building and manipulating machine learning models. We organize a model into the follow adaptable components, which we refer to as the four nouns of predictive modeling:

@@ -9,7 +9,7 @@ Y = truth_theta * X'
 # Run some basic tests
 function TestA()
     yh = infer(myModel, X)
-    @test size(infer(myModel, X)) == size(Y)
+    @test size(yh) == size(Y)
     @test assess(myModel, Y, yh) > 0.0
     @test size(assessgrad(myModel, Y, yh, X)) == (1, size(X,2))
 end
